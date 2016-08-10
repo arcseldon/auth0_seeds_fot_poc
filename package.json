@@ -1,0 +1,35 @@
+{
+  "name": "auth0_apiv2_tests",
+  "version": "0.0.1",
+  "description": "Tests suite for Auth0 API v2",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-string": "^1.2.0",
+    "httpster": "^1.0.3",
+    "npm-run-all": "^2.3.0",
+    "wdio-mocha-framework": "^0.3.1",
+    "webdriverio": "^4.0.9",
+    "request": "^2.74.0"
+  },
+  "scripts": {
+    "test": "run-p httpster selenium wdio",
+    "test-suite": "run-p httpster selenium wdio-suite",
+    "selenium-wdio": "run-p selenium wdio-suite",
+    "httpster": "node ./node_modules/httpster/bin/httpster -d ./ui",
+    "selenium": "java -jar selenium-server-standalone-2.53.1.jar",
+    "wdio": "./node_modules/.bin/wdio wdio.conf.js",
+    "wdio-suite": "./node_modules/.bin/wdio wdio.conf.js --suite login_username_password"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aguerere/auth0_apiv2_tests.git"
+  },
+  "author": "Alberto Güerere",
+  "bugs": {
+    "url": "https://github.com/aguerere/auth0_apiv2_tests/issues"
+  },
+  "homepage": "https://github.com/aguerere/auth0_apiv2_tests#readme"
+}
