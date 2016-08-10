@@ -1,5 +1,5 @@
 exports.config = {
-    
+
     //
     // ==================
     // Specify Test Files
@@ -15,25 +15,7 @@ exports.config = {
     suites: {
         login: [
             './test/specs/login/login_social_authorize_code.spec.js',
-            './test/specs/login/login_social_authorize_token.spec.js',
-            './test/specs/login/login_social_authorize_code_with_connection.spec.js',
-            './test/specs/login/login_username_password.spec.js',
         ],
-        login_social_authorize_code: [
-            './test/specs/login/login_social_authorize_code.spec.js'
-        ],
-        login_social_authorize_token: [
-            './test/specs/login/login_social_authorize_token.spec.js'
-        ],
-        login_social_authorize_code_with_connection: [
-            './test/specs/login/login_social_authorize_code_with_connection.spec.js'
-        ],
-        login_username_password: [
-            './test/specs/login/login_username_password.spec.js',
-        ],
-        tokens: [
-            './test/specs/tokens/social_oauth_access_token.spec.js'
-        ]
     },
     // Patterns to exclude.
     exclude: [
