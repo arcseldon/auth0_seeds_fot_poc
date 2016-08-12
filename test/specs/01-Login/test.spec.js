@@ -27,6 +27,11 @@ describe('Auth0 Angular2 01-Login', function() {
 
     });
 
+    it ('should show Lock', function () {
+        browser.click('button.btn.btn-primary.btn-margin');
+        browser.waitForVisible('button.auth0-lock-submit');
+    })
+
     after(function() {
         if (lite_server_process.kill)
             lite_server_process.kill("SIGINT");

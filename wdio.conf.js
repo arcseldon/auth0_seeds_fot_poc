@@ -14,7 +14,7 @@ exports.config = {
     ],
     suites: {
         todos: [
-            './test/specs/00-Starter-Seed/test.spec.js',
+            //'./test/specs/00-Starter-Seed/test.spec.js',
             './test/specs/01-Login/test.spec.js',
         ],
         "00-Starter-Seed": [
