@@ -197,7 +197,7 @@ exports.config = {
     //
     // Gets executed after all workers got shut down and the process is about to exit. It is not
     // possible to defer the end of the process using a promise.
-    onComplete: function(exitCode) {
-        process.kill("SIGINT");
-    }
+    // onComplete: function(exitCode) {
+    //     console.log("Exit code: ", exitCode);
+    // }
 }
