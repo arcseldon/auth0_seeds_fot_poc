@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Tests suite for Auth0 Seed projects - Proof of concept",
   "dependencies": {
+    "shelljs": "^0.7.3",
+    "sleep": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -13,12 +15,12 @@
   },
   "scripts": {
     "test": "run-p httpster selenium wdio",
-    "test-suite": "run-p httpster selenium wdio-suite",
+    "test-suite": "run-p selenium wdio-suite",
     "selenium-wdio": "run-p selenium wdio-suite",
     "httpster": "node ./node_modules/httpster/bin/httpster -d ./ui",
     "selenium": "java -jar selenium-server-standalone-2.53.1.jar",
     "wdio": "./node_modules/.bin/wdio wdio.conf.js",
-    "wdio-suite": "./node_modules/.bin/wdio wdio.conf.js --suite login_username_password"
+    "wdio-suite": "./node_modules/.bin/wdio wdio.conf.js --suite 00-Starter-Seed"
   },
   "repository": {
     "type": "git",

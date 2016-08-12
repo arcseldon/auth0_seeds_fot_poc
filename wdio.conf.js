@@ -13,8 +13,8 @@ exports.config = {
         './test/specs/**/*.spec.js'
     ],
     suites: {
-        login: [
-            './test/specs/login/login_social_authorize_code.spec.js',
+        "00-Starter-Seed": [
+            './test/specs/00-Starter-Seed/test.spec.js',
         ],
     },
     // Patterns to exclude.
@@ -77,7 +77,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost:3333',
+    baseUrl: 'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 30000,
@@ -149,6 +149,7 @@ exports.config = {
     // before: function (capabilities, specs) {
     // },
     before: function() {
+        require('shelljs/global');
         var chai = require('chai');
         chai.use(require('chai-string'));
         global.expect = chai.expect;
@@ -196,6 +197,7 @@ exports.config = {
     //
     // Gets executed after all workers got shut down and the process is about to exit. It is not
     // possible to defer the end of the process using a promise.
-    // onComplete: function(exitCode) {
-    // }
+    onComplete: function(exitCode) {
+        process.kill("SIGINT");
+    }
 }
