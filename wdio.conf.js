@@ -13,9 +13,16 @@ exports.config = {
         './test/specs/**/*.spec.js'
     ],
     suites: {
+        todos: [
+            './test/specs/00-Starter-Seed/test.spec.js',
+            './test/specs/01-Login/test.spec.js',
+        ],
         "00-Starter-Seed": [
             './test/specs/00-Starter-Seed/test.spec.js',
         ],
+        "01-Login": [
+            './test/specs/01-Login/test.spec.js',
+        ]
     },
     // Patterns to exclude.
     exclude: [
@@ -37,7 +44,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -52,9 +59,10 @@ exports.config = {
         browserName: 'firefox'
     },*/
     {
-        maxInstances: 3,
+        //maxInstances: 3,
         browserName: 'chrome'
-    }],
+    }//, {browserName: 'firefox'}
+    ],
     //
     // ===================
     // Test Configurations
@@ -154,6 +162,31 @@ exports.config = {
         chai.use(require('chai-string'));
         global.expect = chai.expect;
         chai.Should();
+
+
+        var replace = require('replace-in-file');
+        global.sleep = require('sleep');
+        global.sleep_seconds = 5;
+        global.replaceInFile = function(filePath, _replace, _with) {
+            const options = {
+                files: filePath,
+                replace: _replace,
+                with: _with
+            }
+            try {
+                var changedFiles = replace.sync(options);
+                console.log("Changedfiles: ", changedFiles);
+                if (changedFiles.length === 0)
+                    throw new Error('The search failed.');
+            } catch (error) {
+                throw new Error('Could not replace '+_replace+' with '+_with+' on file ' + filePath+': ' + error.toString());
+            }
+        }
+        global.auth0_credentials = {
+            domain: "auth0-seeds-fot-poc.auth0.com",
+            client_id: "rLYQYrx0IaE5LKKBETntd0E6tzyCpVRv",
+            client_secret: "VAroJichDhdid2J7_D30fsgzOz0_Qos9258nTI1J4HsApOI2UemZh2pEXfHdusOj"
+        };
     },
     //
     // Hook that gets executed before the suite starts
