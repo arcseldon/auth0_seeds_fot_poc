@@ -32,6 +32,20 @@ describe('Auth0 Angular2 01-Login', function() {
         browser.waitForVisible('button.auth0-lock-submit');
     })
 
+    it ('should login successfully', function () {
+        browser.setValue('div.auth0-lock-input-email input.auth0-lock-input', "auth0.seeds.fot.poc@gmail.com");
+        browser.setValue('div.auth0-lock-input-password input.auth0-lock-input', "87654321!");
+        browser.click('button.auth0-lock-submit');
+        browser.waitForVisible('home');
+        browser.waitUntil(function() {
+            return this.getText('home h4').then(function(value){
+                return value === "You are logged in";
+            });
+        });
+        browser.getText('home h4').should.equal("You are logged in");
+
+    })
+
     after(function() {
         if (lite_server_process.kill)
             lite_server_process.kill("SIGINT");
