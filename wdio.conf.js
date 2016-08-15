@@ -15,13 +15,17 @@ exports.config = {
     suites: {
         todos: [
             //'./test/specs/00-Starter-Seed/test.spec.js',
-            './test/specs/01-Login/test.spec.js',
+            //'./test/specs/01-Login/test.spec.js',
+            './test/specs/02-Custom-Login/test.spec.js',
         ],
         "00-Starter-Seed": [
             './test/specs/00-Starter-Seed/test.spec.js',
         ],
         "01-Login": [
             './test/specs/01-Login/test.spec.js',
+        ],
+        "02-Custom-Login": [
+            './test/specs/02-Custom-Login/test.spec.js',
         ]
     },
     // Patterns to exclude.
@@ -185,7 +189,8 @@ exports.config = {
         global.auth0_credentials = {
             domain: "auth0-seeds-fot-poc.auth0.com",
             client_id: "rLYQYrx0IaE5LKKBETntd0E6tzyCpVRv",
-            client_secret: "VAroJichDhdid2J7_D30fsgzOz0_Qos9258nTI1J4HsApOI2UemZh2pEXfHdusOj"
+            client_secret: "VAroJichDhdid2J7_D30fsgzOz0_Qos9258nTI1J4HsApOI2UemZh2pEXfHdusOj",
+            callback_url: "http://localhost:3000"
         };
     },
     //
