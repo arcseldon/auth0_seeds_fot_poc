@@ -192,6 +192,10 @@ exports.config = {
             client_secret: "VAroJichDhdid2J7_D30fsgzOz0_Qos9258nTI1J4HsApOI2UemZh2pEXfHdusOj",
             callback_url: "http://localhost:3000"
         };
+        global.user_credentials = {
+            email: 'auth0.seeds.fot.poc@gmail.com',
+            password: '87654321!'
+        }
     },
     //
     // Hook that gets executed before the suite starts

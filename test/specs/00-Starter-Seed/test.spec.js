@@ -3,6 +3,7 @@ var lite_server_process = {};
 
 describe('Auth0 Angular2 00-Starter Seed', function() {
     before(function () {
+        exec('killall lite-server');
         cd('./auth0-angularjs2-systemjs-sample/00-Starter-Seed');
         if (ls('node_modules').length === 0) exec('npm install');
         exec('npm run tsc');

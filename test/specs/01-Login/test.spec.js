@@ -3,6 +3,7 @@ var original_path = '';
 
 describe('Auth0 Angular2 01-Login', function() {
     before(function () {
+        exec('killall lite-server');
         original_path = pwd();
         cd('./auth0-angularjs2-systemjs-sample/01-Login');
         replaceInFile(pwd()+'/app/auth.service.ts', 'YOUR_CLIENT_ID', auth0_credentials.client_id);
@@ -33,8 +34,8 @@ describe('Auth0 Angular2 01-Login', function() {
     })
 
     it ('should login successfully', function () {
-        browser.setValue('div.auth0-lock-input-email input.auth0-lock-input', "auth0.seeds.fot.poc@gmail.com");
-        browser.setValue('div.auth0-lock-input-password input.auth0-lock-input', "87654321!");
+        browser.setValue('div.auth0-lock-input-email input.auth0-lock-input', user_credentials.email);
+        browser.setValue('div.auth0-lock-input-password input.auth0-lock-input', user_credentials.password);
         browser.click('button.auth0-lock-submit');
         browser.waitForVisible('home');
         browser.waitUntil(function() {

@@ -1,6 +1,15 @@
 var lite_server_process = {};
 var original_path = '';
 
+function doGoogleLogin(googleAccount, password) {
+    browser.waitForVisible('input#Email');
+    browser.setValue('input#Email', googleAccount);
+    browser.click('input#next');
+    browser.waitForVisible('input#Passwd');
+    browser.setValue('input#Passwd', password);
+    browser.click('input#signIn');
+};
+
 describe('Auth0 Angular2 02-Custom-Login', function() {
     before(function () {
         exec('killall lite-server');
@@ -30,9 +39,39 @@ describe('Auth0 Angular2 02-Custom-Login', function() {
     });
 
     it ('should show Login fields', function () {
-        browser.click("//button[contains(text(), 'Log In')]");
-        sleep.sleep(sleep_seconds);
-    })
+        browser.click("//button[contains(text(), 'Log In')]"); //Header Log In button
+        browser.waitForVisible('div.form-group');
+        browser.setValue('div.form-group input[type="text"]', user_credentials.email);
+        browser.setValue('div.form-group input[type="password"]', user_credentials.password);
+        browser.click("//button[contains(text(), 'Login')]"); //Form Login button
+        browser.waitForVisible('home');
+        browser.waitUntil(function() {
+            return this.getText('home h4').then(function(value){
+                return value === "You are logged in";
+            });
+        });
+        browser.getText('home h4').should.equal("You are logged in");
+    });
+
+    it('should logout', function () {
+        browser.click("//button[contains(text(), 'Log Out')]"); //Header Log Out button
+        browser.getText('home h4').should.startWith("You are not logged in");
+    });
+
+    it('should login with Google, asking for credentials', function () {
+        browser.click("//button[contains(text(), 'Log In')]"); //Header Log In button
+        browser.waitForVisible('div.form-group');
+        browser.click("//button[contains(text(), 'Login with google')]"); //Form Login with google button
+        doGoogleLogin(user_credentials.email, user_credentials.password);
+        browser.waitForVisible('home');
+        browser.waitUntil(function() {
+            return this.getText('home h4').then(function(value){
+                return value === "You are logged in";
+            });
+        });
+        browser.getText('home h4').should.equal("You are logged in");
+
+    });
 
     after(function() {
         if (lite_server_process.kill)
